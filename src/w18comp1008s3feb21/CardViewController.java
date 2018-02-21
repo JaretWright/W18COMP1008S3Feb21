@@ -27,7 +27,18 @@ public class CardViewController implements Initializable
         //create a deck of cards each time the view is launched
         DeckOfCards deck = new DeckOfCards();
         activeCard = deck.dealTopCard();
-        
+        updateView();
     }    
+    
+    /**
+     * This method will update the labels and image to the current
+     * active card for the view
+     */
+    public void updateView()
+    {
+        this.faceNameLabel.setText("Face Name:  "+activeCard.getFaceName());
+        this.suitLabel.setText("Suit:  "+activeCard.getSuit());
+        this.valueLabel.setText("Value:  "+activeCard.getValue());
+    }
     
 }
