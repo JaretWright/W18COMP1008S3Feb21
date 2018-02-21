@@ -26,6 +26,7 @@ public class CardViewController implements Initializable
     {
         //create a deck of cards each time the view is launched
         DeckOfCards deck = new DeckOfCards();
+        activeCard = deck.dealTopCard();
         
     }    
     

@@ -1,44 +1,76 @@
 package w18comp1008s3feb21;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
  * @author JWright
  */
 public class DeckOfCards {
-    private ArrayList<Card> deck;
+    private ArrayList<Card> cards;
     
     /**
-     * 0 argument constructor
+     * This is a 0 argument constructor, it will build a deck of cards
+     * with cards 2-10, Jack, Queen, King and Ace for the suits of Spades, 
+     * Hearts, Clubs and Diamonds
      */
     public DeckOfCards()
     {
-        deck = new ArrayList<>();
-        String[] validSuits = {"spades","hearts","diamonds","clubs"};
-        String[] validFaceNames = 
-            {"2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"};
+        cards = new ArrayList<>();
         
-        for (String suit: validSuits)
-        {
-            for (String faceName : validFaceNames)
-            {
-                Card card = new Card(faceName, suit);
-                deck.add(card);
-            }
-        }
+        String[] faceNames =  {"2","3","4","5","6","7","8","9","10","Jack",
+                                    "Queen","King","Ace"};
+        String[] suits = {"spades","hearts","diamonds","clubs"};
+        
+        for (String suit:suits){
+            for (String faceName:faceNames)
+                cards.add(new Card(faceName, suit));
+        } 
     }
     
     /**
-     * This method will return a String that has all the cards in the deck
+     * This method will display all the cards in the deck to the console
      */
-    @Override
-    public String toString()
+    public void displayDeck()
     {
-        String stringOfCards = "";
-        for (Card card : deck)
-            stringOfCards += card.toString() + "\n";
-        
-        return stringOfCards;
+        for (Card card:cards)
+            System.out.println(card);
+    }
+    
+    /**
+     * This method will shuffle the order of the cards in the deck
+     */
+    public void shuffle()
+    {
+        Collections.shuffle(cards);
+    }
+    
+    /**
+     * This method will choose and return a random card from the deck
+     */
+    public Card getRandomCard()
+    {
+        SecureRandom rng = new SecureRandom();
+        return cards.remove(rng.nextInt(cards.size()));
+    }
+    
+    /**
+     * This method will return the top card from 
+     * the deck
+     */
+    public Card dealTopCard()
+    {
+        return cards.remove(0);
+    }
+    
+    /**
+     * This method returns the number of cards currently in the
+     * deck
+     */
+    public int getNumberOfCardsInDeck()
+    {
+        return cards.size();
     }
 }
