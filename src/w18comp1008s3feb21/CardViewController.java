@@ -17,6 +17,7 @@ public class CardViewController implements Initializable
     @FXML    private Label suitLabel;
     @FXML    private Label valueLabel;
              private Card activeCard;
+             private DeckOfCards deck;
 
     /**
      * Initializes the controller class.
@@ -25,10 +26,19 @@ public class CardViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         //create a deck of cards each time the view is launched
-        DeckOfCards deck = new DeckOfCards();
+        deck = new DeckOfCards();
         activeCard = deck.dealTopCard();
         updateView();
     }    
+    
+    /**
+     * This method will update the view to the next card in the deck
+     */
+    public void getNextCardButtonPushed()
+    {
+        activeCard = deck.dealTopCard();
+        updateView();
+    }
     
     /**
      * This method will update the labels and image to the current
